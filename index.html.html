@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aşkımızın Hikayesi ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-yellow: #fff8e8;
+            --primary-pink: #ffb3c1;
+            --soft-orange: #ffd6a5;
+            --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Georgia', serif;
+            background: radial-gradient(circle at center, 
+                var(--primary-yellow) 0%, 
+                var(--soft-orange) 100%);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .sun-rays {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200vmax;
+            height: 200vmax;
+            background: conic-gradient(
+                from 0deg,
+                transparent 0deg,
+                rgba(255, 214, 165, 0.1) 1deg,
+                transparent 2deg
+            );
+            animation: rotate 60s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .question {
+            font-size: 3rem;
+            color: #ff4d6d;
+            margin: 2rem 0;
+            text-shadow: var(--text-shadow);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .buttons {
+            margin: 2rem 0;
+        }
+
+        button {
+            padding: 1rem 2.5rem;
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            font-family: 'Georgia', serif;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #evetBtn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+
+        #hayirBtn {
+            background-color: var(--primary-pink);
+            color: #ff4d6d;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .hidden-content {
+            display: none;
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .show-content {
+            display: block;
+            opacity: 1;
+        }
+
+        .messages {
+            margin: 2rem 0;
+        }
+
+        .message {
+            font-size: 2rem;
+            color: #ff4d6d;
+            margin: 1rem 0;
+            text-shadow: var(--text-shadow);
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .photo-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            aspect-ratio: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-container:hover {
+            transform: scale(1.02);
+        }
+
+        .photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-container:hover .photo {
+            opacity: 0.3;
+        }
+
+        .hover-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .photo-container:hover .hover-message {
+            opacity: 1;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff4d6d;
+            opacity: 0.2;
+            animation: floatHeart 6s ease-in-out infinite;
+        }
+
+        @keyframes floatHeart {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(10px, -20px) rotate(20deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .question {
+                font-size: 2rem;
+            }
+
+            .message {
+                font-size: 1.5rem;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            button {
+                padding: 0.8rem 2rem;
+                font-size: 1.2rem;
+                margin: 0.5rem;
+            }
+
+            .hover-message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sun-rays"></div>
+    <div class="floating-hearts" id="floating-hearts"></div>
+    <div class="container">
+        <div class="question">Beni Seviyor Musun? ❤️</div>
+        <div class="buttons">
+            <button id="evetBtn">Evet</button>
+            <button id="hayirBtn">Hayır</button>
+        </div>
+        
+        <div class="hidden-content" id="hiddenContent">
+            <div class="messages">
+                <div class="message">Seninle her şey çok güzel 💕</div>
+                <div class="message">İyi ki varsın, iyi ki hayatımdasın.</div>
+            </div>
+            
+            <div class="photo-grid">
+                <div class="photo-container">
+                    <img src="https://i.imgur.com/eytoCaO.jpeg" class="photo" alt="Fourth Photo">
+                    <div class="hover-message">İlk buluşmamız, ilk kez elini tutuşum, seni ilk görüşüm, baktığımız fallar da doğru çıktı. İyi ki o gün oraya gelmişim. Sana her şey için teşekkür ederim.</div>
+                </div>
+                <div class="photo-container">
+                    <img src="https://i.imgur.com/RcveZ7Z.jpeg" class="photo" alt="First Photo">
+                    <div class="hover-message">Sevgililer günümüz, ilk hediyelerimiz, ilk defa Mikel'e gidişimiz, birbirimize ilk hediye alışımız, bana yaptığın test, keşke tekrar bugüne dönsek. Neyse, daha iyilerini yaşayabileceğimizi düşünüyorum.</div>
+                </div>
+                <div class="photo-container">
+                    <img src="https://i.imgur.com/UEqFebf.jpeg" class="photo" alt="Second Photo">
+                    <div class="hover-message">Ev halin.. Dünya üzerinde daha tatlı çok az şey gördüm. Arada açıp bakıyorum bu fotolarına, sonra bir kere daha şükrediyorum benle olduğun için.</div>
+                </div>
+                <div class="photo-container">
+                    <img src="https://i.imgur.com/DzQqFcM.jpeg" class="photo" alt="Third Photo">
+                    <div class="hover-message">İyi ki varsın sevgilim, defalarca söyledim ve tekrar söylüyorum seni seviyorum.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('evetBtn').addEventListener('click', function() {
+            document.getElementById('hiddenContent').classList.add('show-content');
+            createFloatingHearts();
+        });
+
+        document.getElementById('hayirBtn').addEventListener('click', function() {
+            alert('Yanlış cevap 😢, lütfen tekrar deneyin...');
+        });
+
+        function createFloatingHearts() {
+            const container = document.getElementById('floating-hearts');
+            container.innerHTML = '';
+
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(heart);
+            }
+        }
+    </script>
+</body>
+</html>
